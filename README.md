@@ -1,6 +1,14 @@
 
 # File Tree Generator (ftg)
 
+## Purpose
+
+This tool is a command-line utility written in several languages that generates a visual representation of the directory tree structure. It allows you to:
+
+- Exclude specific files or directories
+- Specify an output location
+- Interactively select items to exclude
+
 ## Overview
 
 I created a file tree generator tool in Zsh and got curious about how it would perform in other languages. This project has been an exercise in learning and experimenting with different programming languages.
@@ -22,14 +30,6 @@ I created a file tree generator tool in Zsh and got curious about how it would p
 ## Installation
 
 To install a version of the tool, please select your desired language and follow the instructions in the corresponding README.md file for that version.
-
-## Purpose
-
-This tool is a command-line utility written in several languages that generates a visual representation of the directory tree structure. It allows you to:
-
-- Exclude specific files or directories
-- Specify an output location
-- Interactively select items to exclude
 
 ## Contributing
 
