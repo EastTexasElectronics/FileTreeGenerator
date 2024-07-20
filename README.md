@@ -1,120 +1,152 @@
-# File Tree Generator (ftg)
 
-File Tree Generator (`ftg`) is a command-line tool that generates a tree view of the directory structure. It supports excluding specific files or directories and provides an interactive mode for selecting exclusions.
+# File Tree Script
 
-## Features
-
-- Generate a tree view of the directory structure.
-- Exclude specific files or directories.
-- Interactive mode for selecting exclusions.
-- Specify a custom output location for the generated tree.
-- Display version information.
+This script generates a file tree of the current directory and outputs it to a markdown file. The script is designed for `zsh` but works on `bash` as well.
 
 ## Installation
 
-### Using Homebrew
+### Clone the Repository
 
-1. **Install `ftg`**:
-
-   ```sh
-   brew install ftg
-   ```
-
-### Using Git
-
-1. **Clone the repository**:
+1. Open your terminal.
+2. Clone the repository using the following command:
 
    ```sh
-   git clone https://github.com/EastTexasElectronics/FileTreeGenerator
+   git clone https://github.com/easttexaselectronics/file-tree-script.git
+   cd file-tree-script
    ```
 
-2. **Navigate to the repository directory**:
+### Make the Script Executable
 
-   ```sh
-   cd file-tree-generator
-   ```
+Make the script executable by running:
 
-3. **Make the script executable**:
+```sh
+chmod +x ftg.sh
+```
 
-   ```sh
-   chmod +x ftg
-   ```
+### Add an Alias
 
-4. **Move the script to a directory in your PATH** (e.g., `/usr/local/bin`):
+To make the script easier to use, add an alias to your shell configuration file.
 
-   ```sh
-   sudo mv ftg /usr/local/bin/
-   ```
+#### For `zsh`
+
+Add the following line to your `~/.zshrc` file:
+
+```sh
+alias ftg="~/path/to/file-tree-script/ft.sh"
+```
+
+Or, to automatically use FTG in interactive mode, add the following line to your `~/.zshrc` file:
+
+```sh
+alias ftg="~/path/to/file-tree-script/ft.sh -i"
+```
+
+#### For `bash`
+
+Add the following line to your `~/.bashrc` or `~/.bash_profile` file:
+
+```sh
+alias ftg="~/path/to/file-tree-script/ft.sh"
+```
+
+Or, to automatically use FTG in interactive mode, add the following line to your `~/.bashrc` or `~/.bash_profile` file:
+
+```sh
+alias ftg="~/path/to/file-tree-script/ft.sh -i"
+```
+
+After adding the alias, reload or restart your shell configuration:
+
+```sh
+source ~/.zshrc    # For zsh
+source ~/.bashrc   # For bash
+```
 
 ## Usage
 
-The `ftg` script can be used with various options to customize its behavior.
+Run the script using the alias:
 
 ```sh
-ftg [-e pattern1,pattern2,...] [-o output_location] [-i] [-h] [-v]
+ftg [options]
 ```
 
-### Options
+### Command Line Options
 
-- `-e, --exclude`: Exclude directories or files (comma-separated) (e.g., `-e .git,node_modules`).
-- `-o, --output`: Specify a different output location.
-- `-i, --interactive`: Interactive mode for excluding directories or files.
-- `-h, --help`: Show help message and exit.
-- `-v, --version`: Show version information and exit.
+<!-- Make sure aliase title and description line up vertically -->
+| Option             | Alias | Description                                                                       |
+|--------------------|-------|-----------------------------------------------------------------------------------|
+| `-e`, `--exclude`  |       | Exclude directories or files (comma-separated). Example: `-e .git,node_modules`    |
+| `-o`, `--output`   |       | Specify a different output location for the generated file tree.                   |
+| `-i`, `--interactive` |   | Interactive mode for excluding directories or files.                               |
+| `-h`, `--help`     |       | Show help message and exit.                                                       |
+| `-v`, `--version`  |       | Show version information and exit.                                                |
 
-### Examples
+### Example Commands
 
-1. **Generate a tree view of the current directory**:
+- Exclude specific directories (please note that the `.git` and `node_modules` directories are already excluded by default):
 
-   ```sh
-   ftg
-   ```
+  ```sh
+  ftg -e .git,node_modules
+  ```
 
-2. **Exclude `.git` and `node_modules` directories**:
+- Specify a different output location:
 
-   ```sh
-   ftg -e .git,node_modules
-   ```
+  ```sh
+  ftg -o /path/to/output/file_tree.md
+  ```
 
-3. **Specify a custom output location**:
+- Interactive mode for excluding directories or files:
 
-   ```sh
-   ftg -o /path/to/output/file_tree.md
-   ```
+  ```sh
+  ftg -i
+  ```
 
-4. **Interactive mode for selecting exclusions**:
+- Show help message:
 
-   ```sh
-   ftg -i
-   ```
+  ```sh
+  ftg -h
+  ```
 
-5. **Show help message**:
+- Show version information:
 
-   ```sh
-   ftg -h
-   ```
+  ```sh
+  ftg -v
+  ```
 
-6. **Show version information**:
+## Customization
 
-   ```sh
-   ftg -v
-   ```
+### Adding or Removing Exclude Patterns
 
-## Contributing
+To add or remove exclude patterns, modify the `exclude_patterns` array in the script:
 
-Contributions are welcome! Please follow these steps:
+```sh
+exclude_patterns+=(node_modules .next .vscode .idea .git target Cargo.lock zig-cache zig-out vendor go.sum DerivedData .svelte-kit)
+```
 
-1. Fork the repository.
-2. Create a new branch (`git checkout -b feature-branch`).
-3. Make your changes.
-4. Commit your changes (`git commit -am 'Add new feature'`).
-5. Push to the branch (`git push origin feature-branch`).
-6. Create a new Pull Request.
+Add or remove entries as needed. For example, to exclude a directory named `logs`, add `logs` to the array:
+
+```sh
+exclude_patterns+=(logs)
+```
+
+### Changing the Output File Location
+
+By default, the script generates the output file in the current directory with a timestamped name. To change the default output location, use the `-o` option when running the script:
+
+```sh
+ftg -o /desired/path/to/output/file_tree.md
+```
+
+Alternatively, you can modify the script directly by setting the `output_location` variable to your desired path:
+
+```sh
+output_location="/desired/path/to/output/file_tree.md"
+```
+
+## Author
+
+This script was created by [easttexaselectronics](https://github.com/easttexaselectronics). Contributions and feedback are welcome!
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
-## Acknowledgements
-
-Thank you for using File Tree Generator! If you have any questions or feedback, please feel free to open an issue or submit a pull request.
+This project is unlicensed. and free to use for any purpose.
