@@ -1,3 +1,7 @@
+# This is a PowerShell implementation of the File Tree Generator tool.
+# This is not been thoroughly tested, and may contain bugs.
+# Please use the Zsh version for a more reliable and complete implementation.
+
 # Initialize exclude patterns array and other variables
 $exclude_patterns = @{}
 $output_location = ""
@@ -21,7 +25,7 @@ Options:
 function Show-Version {
     Write-Output "File Tree Generator version: $version"
     Write-Output "Leave us a star at $author"
-    Write-Output "Buy me a coffee: https://www.buymeacoffee.com/easttexaselectronics"
+    Write-Output "Buy me a coffee: https://www.buymeacoffee.com/rmhavelaar"
     exit 0
 }
 

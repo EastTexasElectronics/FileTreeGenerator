@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# This is a Bash implementation of the File Tree Generator tool.
+# This is not been thoroughly tested, and may contain bugs.
+# Please use the Zsh version for a more reliable and complete implementation and works on Bash as well.
+
 # Initialize exclude patterns array and other variables
 declare -A exclude_patterns
 output_location=""
@@ -25,7 +29,7 @@ EOF
 show_version() {
     echo "File Tree Generator version: $version"
     echo "Leave us a star at $author"
-    echo "Buy me a coffee: https://www.buymeacoffee.com/easttexaselectronics"
+    echo "Buy me a coffee: https://www.buymeacoffee.com/rmhavelaar"
     exit 0
 }
 

@@ -1,5 +1,9 @@
 // main.cpp
 
+// This is a C++ implementation of the File Tree Generator tool.
+// This is not been thoroughly tested, and may contain bugs.
+// Please use the Zsh version for a more reliable and complete implementation.
+
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -52,7 +56,7 @@ void show_version()
 {
     std::cout << "File Tree Generator version: " << version << "\n"
               << "Leave us a star at " << author << "\n"
-              << "Buy me a coffee: https://www.buymeacoffee.com/easttexaselectronics\n";
+              << "Buy me a coffee: https://www.buymeacoffee.com/rmhavelaar\n";
     exit(0);
 }
 

@@ -25,7 +25,7 @@ EOF
 show_version() {
     echo "File Tree Generator version: $version"
     echo "Leave us a star at $author"
-    echo "Buy me a coffee: https://www.buymeacoffee.com/easttexaselectronics"
+    echo "Buy me a coffee: https://www.buymeacoffee.com/rmhavelaar"
     exit 0
 }
 

@@ -1,3 +1,7 @@
+// This is a Go implementation of the File Tree Generator tool.
+// This is not been thoroughly tested, and may contain bugs.
+// Please use the Zsh version for a more reliable and complete implementation.
+
 package main
 
 import (
@@ -34,7 +38,7 @@ Options:
 }
 
 func showVersion() {
-	fmt.Printf("File Tree Generator version: %s\nLeave us a star at %s\nBuy me a coffee: https://www.buymeacoffee.com/easttexaselectronics\n", version, author)
+	fmt.Printf("File Tree Generator version: %s\nLeave us a star at %s\nBuy me a coffee: https://www.buymeacoffee.com/rmhavelaar\n", version, author)
 	os.Exit(0)
 }
 

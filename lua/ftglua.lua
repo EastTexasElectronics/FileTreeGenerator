@@ -1,5 +1,9 @@
 #!/usr/bin/env lua
 
+-- This is a Lua implementation of the File Tree Generator tool.
+-- This is not been thoroughly tested, and may contain bugs.
+-- Please use the Zsh version for a more reliable and complete implementation.
+
 -- Initialize exclude patterns array and other variables
 local exclude_patterns = {}
 local output_location = ""
@@ -25,7 +29,7 @@ end
 local function show_version()
     print("File Tree Generator version: " .. version)
     print("Leave us a star at " .. author)
-    print("Buy me a coffee: https://www.buymeacoffee.com/easttexaselectronics")
+    print("Buy me a coffee: https://www.buymeacoffee.com/rmhavelaar")
     os.exit(0)
 end
 

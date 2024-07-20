@@ -1,3 +1,7 @@
+# This is a Python implementation of the File Tree Generator tool.
+# This is not been thoroughly tested, and may contain bugs.
+# Please use the Zsh version for a more reliable and complete implementation.
+
 import argparse
 import os
 import sys
@@ -13,7 +17,7 @@ def show_version():
     # Print the version information and exit.
     print(f"File Tree Generator version: {version}")
     print(f"Leave me a star at {author}")
-    print("Buy me a coffee: https://www.buymeacoffee.com/easttexaselectronics")
+    print("Buy me a coffee: https://www.buymeacoffee.com/rmhavelaar")
     sys.exit(0)
 
 

@@ -1,3 +1,7 @@
+// This is a Rust implementation of the File Tree Generator tool.
+// This is not been thoroughly tested, and may contain bugs.
+// Please use the Zsh version for a more reliable and complete implementation.
+
 use chrono::Local;
 use std::collections::HashSet;
 use std::fs;
@@ -98,7 +102,7 @@ fn show_usage() {
 fn show_version() {
     let version = "1.0.0";
     let author = "https://github.com/easttexaselectronics";
-    println!("File Tree Generator version: {}\nLeave us a star at {}\nBuy me a coffee: https://www.buymeacoffee.com/easttexaselectronics", version, author);
+    println!("File Tree Generator version: {}\nLeave us a star at {}\nBuy me a coffee: https://www.buymeacoffee.com/rmhavelaar", version, author);
     std::process::exit(0);
 }
 
