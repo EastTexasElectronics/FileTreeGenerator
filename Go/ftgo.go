@@ -1,12 +1,14 @@
 package main
 
 import (
+    "bufio"
     "flag"
     "fmt"
     "io"
     "io/fs"
     "os"
     "path/filepath"
+    "strconv"
     "strings"
     "time"
 )
@@ -105,6 +107,78 @@ func generateTree(writer io.Writer, path, indent string) {
     }
 }
 
+func interactiveMode() {
+    reader := bufio.NewReader(os.Stdin)
+    for {
+        // List all entries with IDs
+        fmt.Println("List of files and directories in the current directory:")
+        entries, err := getEntries(".")
+        if err != nil {
+            errorExit("Failed to read current directory")
+        }
+
+        count := len(entries)
+        for i, entry := range entries {
+            fmt.Printf("[%d] %s\n", i+1, entry.Name())
+        }
+
+        // Prompt user to enter IDs to exclude or clear the exclusion list
+        fmt.Println("Enter space-separated numbers of items to exclude, type 'clear' to clear the exclusion list, or '-<ID>' to remove an item from the exclusion list:")
+        ids, _ := reader.ReadString('\n')
+        ids = strings.TrimSpace(ids)
+
+        if ids == "clear" {
+            excludePatterns = map[string]bool{}
+            fmt.Println("Exclusion list cleared.")
+        } else {
+            for _, idStr := range strings.Split(ids, " ") {
+                if idStr == "" {
+                    continue
+                }
+                if strings.HasPrefix(idStr, "-") {
+                    id, err := strconv.Atoi(idStr[1:])
+                    if err == nil && id > 0 && id <= count {
+                        entry := entries[id-1]
+                        delete(excludePatterns, entry.Name())
+                        fmt.Printf("Removed %s from exclusion list.\n", entry.Name())
+                    } else {
+                        fmt.Printf("Invalid ID: %s\n", idStr)
+                    }
+                } else {
+                    id, err := strconv.Atoi(idStr)
+                    if err == nil && id > 0 && id <= count {
+                        entry := entries[id-1]
+                        excludePatterns[entry.Name()] = true
+                        fmt.Printf("Added %s to exclusion list.\n", entry.Name())
+                    } else {
+                        fmt.Printf("Invalid ID: %s\n", idStr)
+                    }
+                }
+            }
+        }
+
+        // Show current exclusion list
+        fmt.Println("Current exclusion list:")
+        for pattern := range excludePatterns {
+            fmt.Println(pattern)
+        }
+
+        // Ask if the user wants to add more or generate the file tree
+        fmt.Println("Do you want to add more items (m), generate the file tree (y), or clear the exclusion list (c)?")
+        choice, _ := reader.ReadString('\n')
+        choice = strings.TrimSpace(choice)
+
+        if choice == "y" {
+            break
+        } else if choice == "c" {
+            excludePatterns = map[string]bool{}
+            fmt.Println("Exclusion list cleared.")
+        } else if choice != "m" {
+            fmt.Println("Invalid choice.")
+        }
+    }
+}
+
 func main() {
     var exclude string
     var interactive, clear, help, versionFlag bool
@@ -143,8 +217,7 @@ func main() {
     }
 
     if interactive {
-        fmt.Println("Interactive mode is not implemented in this example")
-        os.Exit(1)
+        interactiveMode()
     }
 
     if outputLocation == "" {
