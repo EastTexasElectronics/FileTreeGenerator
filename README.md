@@ -7,12 +7,18 @@ This script generates a file tree of the current directory and outputs it to a m
 
 ### Clone the Repository
 
-1. Open your terminal.
-2. Clone the repository using the following command:
+Clone the repository using the following command:
 
    ```sh
-   git clone https://github.com/easttexaselectronics/file-tree-script.git
-   cd file-tree-script
+   git clone https://github.com/EastTexasElectronics/FileTreeGenerator.git
+   ```
+
+### Change Directory
+
+Change directory to the cloned repository:
+
+   ```sh
+   cd FileTreeGenerator
    ```
 
 ### Make the Script Executable
@@ -23,39 +29,21 @@ Make the script executable by running:
 chmod +x ftg.sh
 ```
 
-### Add an Alias
+### Add an Alias to your `~/.zshrc` or `~/.bashrc` file
 
 To make the script easier to use, add an alias to your shell configuration file.
 
-#### For `zsh`
-
-Add the following line to your `~/.zshrc` file:
+Feel free to add any flags or options you want to the alias such as `-i` for interactive mode.
 
 ```sh
-alias ftg="~/path/to/file-tree-script/ft.sh"
+alias ftg="~/path/to/FileTreeGenerator/ftg.sh"
 ```
 
-Or, to automatically use FTG in interactive mode, add the following line to your `~/.zshrc` file:
+You will need to replace `~/path/to/FileTreeGenerator` with the actual path to the cloned repository.
 
-```sh
-alias ftg="~/path/to/file-tree-script/ft.sh -i"
-```
+### Source your Shell Configuration
 
-#### For `bash`
-
-Add the following line to your `~/.bashrc` or `~/.bash_profile` file:
-
-```sh
-alias ftg="~/path/to/file-tree-script/ft.sh"
-```
-
-Or, to automatically use FTG in interactive mode, add the following line to your `~/.bashrc` or `~/.bash_profile` file:
-
-```sh
-alias ftg="~/path/to/file-tree-script/ft.sh -i"
-```
-
-After adding the alias, reload or restart your shell configuration:
+After adding the alias, reload your shell configuration with the following command:
 
 ```sh
 source ~/.zshrc    # For zsh
@@ -72,7 +60,6 @@ ftg [options]
 
 ### Command Line Options
 
-<!-- Make sure aliase title and description line up vertically -->
 | Option             | Alias | Description                                                                       |
 |--------------------|-------|-----------------------------------------------------------------------------------|
 | `-e`, `--exclude`  |       | Exclude directories or files (comma-separated). Example: `-e .git,node_modules`    |
@@ -86,7 +73,7 @@ ftg [options]
 - Exclude specific directories (please note that the `.git` and `node_modules` directories are already excluded by default):
 
   ```sh
-  ftg -e .git,node_modules
+  ftg -e [package1],[directory],[.dotfile],[file]
   ```
 
 - Specify a different output location:
@@ -120,7 +107,7 @@ ftg [options]
 To add or remove exclude patterns, modify the `exclude_patterns` array in the script:
 
 ```sh
-exclude_patterns+=(node_modules .next .vscode .idea .git target Cargo.lock zig-cache zig-out vendor go.sum DerivedData .svelte-kit)
+exclude_patterns+=(node_modules .next .vscode .idea .git .DS_Store)
 ```
 
 Add or remove entries as needed. For example, to exclude a directory named `logs`, add `logs` to the array:
@@ -143,10 +130,57 @@ Alternatively, you can modify the script directly by setting the `output_locatio
 output_location="/desired/path/to/output/file_tree.md"
 ```
 
+## Example Output
+
+Default output while using the base create t3 app template:
+
+```sh
+├── [File] 
+├── [File] .env
+├── [File] .env.example
+├── [File] .eslintrc.cjs
+├── [File] .gitignore
+├── [File] README.md
+├── [File] bun.lockb
+├── [File] file_tree_21-54-30.md
+├── [File] next-env.d.ts
+├── [File] next.config.js
+├── [File] package.json
+├── [File] postcss.config.cjs
+├── [File] prettier.config.js
+├── [Directory] prisma
+│   └── [File] 
+├── [Directory] public
+│   └── [File] 
+├── [Directory] src
+│   ├── [File] 
+│   ├── [Directory] app
+│   │   ├── [File] 
+│   │   ├── [Directory] _components
+│   │   │   └── [File] 
+│   │   ├── [Directory] api
+│   │   │   ├── [File] 
+│   │   │   └── [Directory] auth
+│   │   │       └── [File] 
+│   │   └── [File] layout.tsx
+│   ├── [File] env.js
+│   ├── [Directory] server
+│   │   ├── [File] 
+│   │   ├── [Directory] api
+│   │   │   ├── [File] 
+│   │   │   ├── [File] root.ts
+│   │   │   └── [Directory] routers
+│   │   │       └── [File] 
+│   │   └── [File] auth.ts
+│   └── [Directory] styles
+│       └── [File] 
+└── [File] tailwind.config.ts
+```
+
 ## Author
 
 This script was created by [easttexaselectronics](https://github.com/easttexaselectronics). Contributions and feedback are welcome!
 
 ## License
 
-This project is unlicensed. and free to use for any purpose.
+This project is licensed under the GNU Affero General Public License v3.0. For more information, see the [LICENSE](LICENSE) file.
