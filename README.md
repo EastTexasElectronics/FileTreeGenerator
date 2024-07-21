@@ -1,5 +1,5 @@
 
-# File Tree Script
+# File Tree Generator Shell Script
 
 This script generates a file tree of the current directory and outputs it to a markdown file. The script is designed for `zsh` but works on `bash` as well.
 
